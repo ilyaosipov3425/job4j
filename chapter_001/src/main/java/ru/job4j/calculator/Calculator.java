@@ -4,6 +4,7 @@ package ru.job4j.calculator;
  * @author Osipov Ilya (mailto:bullet3425@yandex.ru)
  */
 public class Calculator{
+    public static Calculator calc;
     private double result;
 
     public void add(double first, double second){

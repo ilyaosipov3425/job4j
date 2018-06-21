@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static ru.job4j.calculator.Calculator.calc;
 
 /**
  * Test
@@ -13,8 +14,8 @@ import static org.junit.Assert.assertThat;
  */
 public class CalculatorTest{
     @Test
-    public void whenAddOnePlusOneThenTwo(){
-        Calculator.calc = new Calculator();
+    public void whenAddOnePlusOneThenTwo() {
+        calc = new Calculator();
         calc.add(1D, 1D);
         double result = calc.getResult();
         double expected = 2D;
@@ -23,7 +24,7 @@ public class CalculatorTest{
 
     @Test
     public void whenSubtractTreeMinusOneThenTwo(){
-        Calculator.calc = new Calculator();
+        calc = new Calculator();
         calc.subtract(3D, 1D);
         double result = calc.getResult();
         double expected = 2D;
@@ -32,7 +33,7 @@ public class CalculatorTest{
 
     @Test
     public void whenDivTwoOnTwoThenOne(){
-        Calculator.calc = new Calculator();
+        calc = new Calculator();
         calc.div(2D, 2D);
         double result = calc.getResult();
         double expected = 1D;
@@ -41,9 +42,9 @@ public class CalculatorTest{
 
     @Test
     public void whenMultipleTwoOnTwoThenFour(){
-        Calculator.calc = new Caclculator();
+        calc = new Calculator();
         calc.multiple(2D, 2D);
-        double result = calc,getResult();
+        double result = calc.getResult();
         double expected = 4D;
         assertThat(result, is(expected));
     }
