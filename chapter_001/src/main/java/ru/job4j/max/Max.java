@@ -9,7 +9,6 @@ package ru.job4j.max;
 public class Max {
 
     public int max(int first, int second) {
-        int result = second > first ? second : first;
-        return result;
+        return second > first ? second : first;
     }
 }
