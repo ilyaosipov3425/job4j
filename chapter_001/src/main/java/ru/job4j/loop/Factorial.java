@@ -11,9 +11,7 @@ public class Factorial {
         int sum = 0;
         boolean b = true;
         for(int i = 1; i <= n; i++) {
-            if (i == n)
-                sum *= i;
-            }
+                sum *= i; }
             return sum;
         }
     }
