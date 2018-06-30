@@ -11,8 +11,8 @@ public class Counter {
         int sum = 0;
         boolean b = true;
         for (int i = start; i <= finish; start++) {
-            if (start % 2 == 0)
-                sum +=start; }
+            if (i % 2 == 0)
+                sum +=i; }
         return sum;
     }
 }
