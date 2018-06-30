@@ -13,15 +13,15 @@ import static org.junit.Assert.assertThat;
 public class CounterTest {
     @Test
     public void whenSumEvenNumbersFromOneToThenThirty() {
-        Counter counter = new Counter();
-        int result = counter.add(1, 10);
+        Counter sum = new Counter();
+        int result = sum.add(1, 10);
         assertThat(result, is(30));
     }
 
     @Test
     public void whenSumEvenNumbersFromFiveToThenFifty() {
-        Counter counter = new Counter();
-        int result = counter.add(5, 15);
+        Counter sum = new Counter();
+        int result = sum.add(5, 15);
         assertThat(result, is(50));
     }
 }
