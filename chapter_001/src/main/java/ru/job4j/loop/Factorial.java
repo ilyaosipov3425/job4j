@@ -8,7 +8,7 @@ package ru.job4j.loop;
  */
 public class Factorial {
     public int calc(int n) {
-        int sum = 0;
+        int sum = 1;
         boolean b = true;
         for(int i = 1; i <= n; i++) {
                 sum *= i; }
