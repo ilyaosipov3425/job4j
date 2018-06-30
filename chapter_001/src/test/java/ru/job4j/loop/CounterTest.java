@@ -17,4 +17,11 @@ public class CounterTest {
         int result = counter.add(1, 10);
         assertThat(result, is(30));
     }
+
+    @Test
+    public void whenSumEvenNumbersFromFiveToThenFifty() {
+        Counter counter = new Counter();
+        int result = counter.add(5, 15);
+        assertThat(result, is(50));
+    }
 }
