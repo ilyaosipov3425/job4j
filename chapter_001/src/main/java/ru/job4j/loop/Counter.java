@@ -11,6 +11,7 @@ public class Counter {
         int start = 1; //начало диапазона
         int finish = 10; //конец диапазона
         int sum = 0;
+        boolean b = true;
         for (start <= finish; start++) {
             if (start % 2 == 0)
                 sum +=start; }
