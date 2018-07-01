@@ -41,14 +41,12 @@ public class Triangle {
     public double area() {
         double rsl = -1; /*мы устанавливаем значение -1, т.к. может быть треугольника нет.
          Это значение говорит о том, что треугольнка нет.*/
-        double ab = this.a.distanceTo(this.b);
-        double ac = this.a.distanceTo(this.c);
-        double bc = this.b.distanceTo(this.c);
+        double ab = this.distance(this.a, this.b);
+        double ac = this.distance(this.a, this.c);
+        double bc = this.distance(this.b, this.c);
         double p = (this.period(ab, ac, bc));
         if (this.exist(ab, ac,bc)) {
-            rsl = Math.sqrt(
-                    Math.pow(p * (p - ab) * (p - ac) * (p - bc))
-            );
+            rsl = Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));
         }
         return rsl;
     }
@@ -67,3 +65,4 @@ public class Triangle {
         return (ab + ac < bc && ab + bc < ac && ac + bc < ab);
     }
 }
+
