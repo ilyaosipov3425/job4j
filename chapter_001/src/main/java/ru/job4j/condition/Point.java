@@ -16,7 +16,7 @@ public class Point {
 
     public double distanceTo(Point that) {
         return Math.sqrt(
-                Math.pow(this.x - this.x, 2) + Math.pow(this.y - this.y, 2)
+                Math.pow(this.x - that.x, 2) + Math.pow(this.y - that.y, 2)
         );
     }
 
