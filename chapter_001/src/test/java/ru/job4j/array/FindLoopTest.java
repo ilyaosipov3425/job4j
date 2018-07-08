@@ -23,12 +23,12 @@ public class FindLoopTest {
     }
 
     @Test
-    public void whenArrayHasLengh6Then() {
+    public void whenArrayHasLenghThenMinusOne() {
         FindLoop find = new FindLoop();
         int[] input = new int[] {5, 10, 3};
         int value = 6;
         int result = find.indexOf(input,value);
-        int expect = -1;
+        int expect = - 1;
         assertThat(result, is(expect));
     }
 }
