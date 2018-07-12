@@ -9,7 +9,8 @@ package ru.job4j.array;
 public class Check {
     public boolean mono(boolean[] data) {
         boolean result = false;
-        for(int i = 0; i < data.length; i++) {
+        int i = data.length;
+        if(i > 0) {
             boolean input = data[0];
             result = true;
             for(int x = 0; x < i; x++) {
