@@ -21,7 +21,7 @@ public class ArrayChar {
         char[] value = prefix.toCharArray();
         // проверить. что массив data имеет первые элементы одинаковые с value
         if (this.data.length < value.length) {
-            result = true;
+            result = false;
         }
         for (int i = 0; i < value.length; i++) {
             if (data[i] != value[i]) {
