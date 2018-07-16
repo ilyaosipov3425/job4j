@@ -10,7 +10,7 @@ public class Factorial {
     public int calc(int n) {
         int sum = 1;
         boolean b = true;
-        for(int i = 1; i <= n; i++) {
+        for (int i = 1; i <= n; i++) {
                 sum *= i; }
             return sum;
         }
