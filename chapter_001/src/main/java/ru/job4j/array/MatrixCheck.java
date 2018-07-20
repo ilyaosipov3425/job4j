@@ -10,11 +10,12 @@ package ru.job4j.array;
 public class MatrixCheck {
     public boolean mono(boolean[][] data) {
         boolean result = true;
-        for (int i = 0; i < data.length; i++) {
-            for (int j = 0; j < data.length; j++) {
-                if (i == j) {
-                    result = true;
-                } else {
+        int i = data.length - 2;
+        if (i > 0) {
+            boolean input = data[0][0];
+            result = true;
+            for (int j = 0; j < i; j++) {
+                if (data[i][i] != input) {
                     result = false;
                 }
             }
