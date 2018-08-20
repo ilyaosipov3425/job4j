@@ -7,7 +7,7 @@ public class Teacher extends Profession {
         this.learnStudent = learnStudent;
     }
 
-    public String getLernStudent() {
+    public String getLearnStudent() {
         return this.learnStudent;
     }
 }
