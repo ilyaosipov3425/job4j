@@ -2,6 +2,13 @@ package ru.job4j.tictactoe;
 
 import java.util.function.Predicate;
 
+/**
+ * Логика игры крестики-нолики.
+ * @author Osipov Ilya (mailto:bullet3425@yandex.ru)
+ * @version $Id$
+ * @since 08.08.2018
+ */
+
 public class Logic3T {
     private final Figure3T[][] table;
 
@@ -24,20 +31,33 @@ public class Logic3T {
     }
 
     public boolean isWinnerX() {
-        return false;
+        boolean result = false;
+        if (this.table[0][0].hasMarkX() && this.table[1][1].hasMarkX() && this.table[2][2].hasMarkX() ||
+                (this.table[2][0].hasMarkX() && this.table[1][1].hasMarkX() && this.table[0][2].hasMarkX())) {
+            result = true;
+            for (int i = 0; i < 2; i++) {
+                if (this.table[0][i].hasMarkX() && this.table[1][i].hasMarkX() && this.table[2][i].hasMarkX() ||
+                        (this.table[i][0].hasMarkX() && this.table[i][1].hasMarkX() && this.table[i][2].hasMarkX())) {
+                    result = true;
+                }
+            }
+        }
+        return result;
     }
 
+
     public boolean isWinnerO() {
-        return false;
+        boolean result = false;
+        return result;
     }
 
     public boolean hasGap() {
-        boolean input = false;
+        boolean result = false;
         for (int i = 0; i < this.table.length; i++) {
-            if (table[i][i] != null) {
-                input = true;
+            if (this.table[0][0] != null) {
+                result = true;
             }
         }
-        return input;
+        return result;
     }
 }
