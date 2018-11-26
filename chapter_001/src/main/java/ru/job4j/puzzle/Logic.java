@@ -70,6 +70,7 @@ public class Logic {
         int[][] table = this.convert();
         boolean result = false;
         int vertSum = 0;
+        int horizSum = 0;
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 if (table[i][j] == 1) {
@@ -77,8 +78,13 @@ public class Logic {
                 } else {
                     vertSum = 0;
                 }
+                if (table[j][i] == 1) {
+                    horizSum++;
+                } else {
+                    horizSum = 0;
+                }
             }
-            if (vertSum == table[i].length) {
+            if (vertSum == table[i].length || horizSum == table.length) {
                 result = true;
                 break;
             }
