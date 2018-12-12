@@ -58,7 +58,9 @@ public class Tracker {
      */
     public void delete(String id) {
         for (int i = 0; i < items.length; i++) {
-            System.arraycopy(items, i + 1, items, i, position);
+            if (items[i].equals(id)) {
+                System.arraycopy(items, i + 1, items, i, position - 1);
+            }
         }
     }
 
