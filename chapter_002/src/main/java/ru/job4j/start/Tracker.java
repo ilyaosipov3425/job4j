@@ -57,15 +57,9 @@ public class Tracker {
      * Метод удаления заявки.
      */
     public void delete(String id) {
-        int index = items.length;
-        for (Item item : items) {
-            if (item != null && item.getId().equals(id)) {
-                items[id] = items[index - 1];
-                index--;
-                id--;
-            }
+        for (int i = 0; i < items.length; i++) {
+            System.arraycopy(items, i + 1, items, i, position);
         }
-        Arrays.copyOf(items, index);
     }
 
     /**
@@ -73,11 +67,7 @@ public class Tracker {
      * @return
      */
     public Item[] findAll() {
-        Item[] result = new Item[position];
-        for (int index = 0; index != this.position; index++) {
-            result[index] = this.items[index];
-        }
-        return result;
+        return Arrays.copyOf(items, position);
     }
 
     /**
