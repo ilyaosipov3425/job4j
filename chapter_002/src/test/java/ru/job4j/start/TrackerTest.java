@@ -4,6 +4,7 @@ import org.junit.Test;
 import ru.job4j.models.*;
 
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -32,7 +33,8 @@ public class TrackerTest {
         // Создаем новую заявку.
         Item next = new Item("test2", "testDescription", 1234L);
         // Простовляем старый id из previous, которы был сгенерирован выше.
-        next.setId(previous.getId(), next);
+        next.setId(previous.getId());
+        tracker.replace(previous.getId(), next);
         // Проверяем, что заявка с таким id имеет новое имя test2.
         assertThat(tracker.findById(previous.getId()).getName(), is("test2"));
     }

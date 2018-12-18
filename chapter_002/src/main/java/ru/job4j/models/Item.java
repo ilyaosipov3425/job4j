@@ -14,18 +14,15 @@ public class Item {
 
     public long create;
 
-    public String comments;
-
     private String id;
 
     public Item() {
     }
 
-    public Item(String name, String description, long create, String comments) {
+    public Item(String name, String description, long create) {
         this.name = name;
         this.description = description;
         this.create = create;
-        this.comments = comments;
     }
 
     public String getName() {
@@ -40,15 +37,11 @@ public class Item {
         return this.create;
     }
 
-    public String getComments() {
-        return this.comments;
-    }
-
     public String getId() {
         return this.id;
     }
 
-    public String setId(String id) {
+    public void setId(String id) {
         this.id = id;
     }
 }

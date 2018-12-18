@@ -51,17 +51,19 @@ public class Tracker {
      * @param item
      */
     public void replace(String id, Item item) {
+        for (int i = 0; i < position; i++) {
+            if (items[i].getId().equals(id)) {
+                items[i] = item;
+                item.setId(id);
+            }
+        }
     }
 
     /**
      * Метод удаления заявки.
+     * @param id
      */
     public void delete(String id) {
-        for (int i = 0; i < items.length; i++) {
-            if (items[i].equals(id)) {
-                System.arraycopy(items, i + 1, items, i, position - 1);
-            }
-        }
     }
 
     /**
