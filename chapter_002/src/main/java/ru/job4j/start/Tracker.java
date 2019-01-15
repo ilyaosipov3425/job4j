@@ -28,6 +28,7 @@ public class Tracker {
 
     /**
      * Метод реализующий добавление заявки в хранилище.
+     *
      * @param item новая заявка
      */
     public Item add(Item item) {
@@ -39,6 +40,7 @@ public class Tracker {
     /**
      * Метод генерирует уникальный ключ для заявки.
      * Так как у заявки нет уникальности полей, имени и описания. Для идентификции нам нужен уникальный ключ.
+     *
      * @return Уникальный ключ.
      */
     public String generateId() {
@@ -47,6 +49,7 @@ public class Tracker {
 
     /**
      * Метод редактирования заявок.
+     *
      * @param id
      * @param item
      */
@@ -61,6 +64,7 @@ public class Tracker {
 
     /**
      * Метод удаления заявки.
+     *
      * @param id
      */
     public void delete(String id) {
@@ -68,6 +72,7 @@ public class Tracker {
 
     /**
      * Метод отображения списка всех заявок.
+     *
      * @return
      */
     public Item[] findAll() {
@@ -76,21 +81,30 @@ public class Tracker {
 
     /**
      * Метод получения списка заявок по имени.
+     *
      * @param key
      * @return
      */
     public Item[] findByName(String key) {
-        return null;
+        Item[] result = new Item[position];
+        int counter = 0;
+        for (int i = 0; i != position; i++) {
+            if (items[i] != null && items[i].getName().equals(key)) {
+                result[i] = items[i];
+                counter++;
+            }
+        }
+        return Arrays.copyOf(result, counter);
     }
 
     /**
-     * Метод получния заявки по id.
+     * Метод получения заявки по id.
      * @param id
      * @return
      */
-    public Item findById(String id) {
+    public Item findById (String id){
         Item result = null;
-        for (Item item: items) {
+        for (Item item : items) {
             if (item != null && item.getId().equals(id)) {
                 result = item;
                 break;
