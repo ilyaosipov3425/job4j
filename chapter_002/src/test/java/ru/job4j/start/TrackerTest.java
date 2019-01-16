@@ -38,4 +38,18 @@ public class TrackerTest {
         // Проверяем, что заявка с таким id имеет новое имя test2.
         assertThat(tracker.findById(previous.getId()).getName(), is("test2"));
     }
+
+    @Test
+    public void whenFindByName() {
+        Tracker tracker = new Tracker();
+        tracker.add(new Item("test2", "test2", 123L));
+        tracker.add(new Item("test3", "test3", 123L));
+        Item[] ex = {
+                tracker.add(new Item("test1", "testDescription", 123L)),
+                tracker.add(new Item("test1", "test2", 123L)),
+                tracker.add(new Item("test1", "test3", 123L)),
+        };
+        final Item[] result = tracker.findByName("test1");
+        assertThat(result, is(ex));
+    }
 }

@@ -90,8 +90,7 @@ public class Tracker {
         int counter = 0;
         for (int i = 0; i != position; i++) {
             if (items[i] != null && items[i].getName().equals(key)) {
-                result[i] = items[i];
-                counter++;
+                result[counter++] = items[i];
             }
         }
         return Arrays.copyOf(result, counter);
@@ -102,7 +101,7 @@ public class Tracker {
      * @param id
      * @return
      */
-    public Item findById (String id){
+    public Item findById(String id) {
         Item result = null;
         for (Item item : items) {
             if (item != null && item.getId().equals(id)) {
