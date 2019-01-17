@@ -40,7 +40,7 @@ public class TrackerTest {
     }
 
     @Test
-    public void whenFindByName() {
+    public void whenFindByNameThenArrayItemsReturn() {
         Tracker tracker = new Tracker();
         tracker.add(new Item("test2", "test2", 123L));
         tracker.add(new Item("test3", "test3", 123L));
@@ -51,5 +51,29 @@ public class TrackerTest {
         };
         final Item[] result = tracker.findByName("test1");
         assertThat(result, is(ex));
+    }
+
+    @Test
+    public void whenDeleteItemThenReturnArrayItems() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("test1", "testDescription", 123L);
+        Item item1 = new Item("test2", "testDescription", 123L);
+        Item item2 = new Item("test3", "testDescription", 123L);
+        tracker.add(item);
+        tracker.add(item1);
+        tracker.add(item2);
+        assertThat(tracker.delete(item.getId()), is(true));
+    }
+
+    @Test
+    public void whenDeleteAnotherItemThenReturnArrayItems() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("test1", "testDescription", 123L);
+        Item item1 = new Item("test2", "testDescription", 123L);
+        Item item2 = new Item("test3", "test Description", 123L);
+        tracker.add(item);
+        tracker.add(item1);
+        tracker.add(item2);
+        assertThat(tracker.delete(item1.getId()), is(true));
     }
 }
