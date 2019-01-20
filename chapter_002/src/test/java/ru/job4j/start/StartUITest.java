@@ -29,7 +29,7 @@ public class StartUITest {
         // напрямую добавляем заявку
         Item item = tracker.add(new Item("test name", "desc"));
         // создаем StubInput с последовательностью действий(производим замену заявки)
-        Input input = new StubInput(new String[]{"2", item.getId(), "test replace", "6"});
+        Input input = new StubInput(new String[]{"2", item.getId(), "test replace", "заменили заявку", "6"});
         // создаем StartUI и вызываем метод init()
         new StartUI(input, tracker).init();
         // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции
@@ -42,6 +42,6 @@ public class StartUITest {
         Item item = tracker.add(new Item("test name", "desc"));
         Input input = new StubInput(new String[]{"3", item.getId(), "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findById(item.getId()).getName(), is(0));
+        assertThat(tracker.findAll().length, is(0));
     }
 }

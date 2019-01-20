@@ -17,6 +17,9 @@ public class Item {
     private String id;
 
     public Item(String name, String desc) {
+        this.name = name;
+        this.description = desc;
+        this.create = System.currentTimeMillis();
     }
 
     public Item(String name, String description, long create) {
