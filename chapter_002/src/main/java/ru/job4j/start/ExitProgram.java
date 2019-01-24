@@ -8,9 +8,17 @@ package ru.job4j.start;
  */
 
 public class ExitProgram implements UserAction {
+    private int key;
+    private String name;
+
+    public ExitProgram(int key, String name) {
+        this.key = key;
+        this.name = name;
+    }
+
     @Override
     public int key() {
-        return 6;
+        return key;
     }
 
     @Override
@@ -21,6 +29,6 @@ public class ExitProgram implements UserAction {
 
     @Override
     public String info() {
-        return "Exit Program";
+        return String.format("%d. %s", key, name);
     }
 }

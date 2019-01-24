@@ -10,9 +10,17 @@ import ru.job4j.models.*;
  */
 
 public class FindByNameItem implements UserAction {
+    private int key;
+    private String name;
+
+    public FindByNameItem(int key, String name) {
+        this.key = key;
+        this.name = name;
+    }
+
     @Override
     public int key() {
-        return 5;
+        return key;
     }
 
     @Override
@@ -31,6 +39,6 @@ public class FindByNameItem implements UserAction {
 
     @Override
     public String info() {
-        return "Found item";
+        return String.format("%d. %s", key, name);
     }
 }

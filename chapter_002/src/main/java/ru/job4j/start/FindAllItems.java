@@ -10,9 +10,17 @@ import ru.job4j.models.*;
  */
 
 public class FindAllItems implements UserAction {
+    private int key;
+    private String name;
+
+    public FindAllItems(int key, String name) {
+        this.key = key;
+        this.name = name;
+    }
+
     @Override
     public int key() {
-        return 1;
+        return key;
     }
 
     @Override
@@ -27,6 +35,6 @@ public class FindAllItems implements UserAction {
 
     @Override
     public String info() {
-        return "Show all items.";
+        return String.format("%d. %s", key, name);
     }
 }

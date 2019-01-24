@@ -1,7 +1,5 @@
 package ru.job4j.start;
 
-import ru.job4j.models.*;
-
 /**
  * Класс DeleteItem - удаление заявки
  * @author Ilya Osipov (mailto:bullet3425@yandex.ru)
@@ -10,9 +8,17 @@ import ru.job4j.models.*;
  */
 
 public class DeleteItem implements UserAction {
+    private int key;
+    private String name;
+
+    public DeleteItem(int key, String name) {
+        this.key = key;
+        this.name = name;
+    }
+
     @Override
     public int key() {
-        return 3;
+        return key;
     }
 
     @Override
@@ -28,6 +34,6 @@ public class DeleteItem implements UserAction {
 
     @Override
     public String info() {
-        return "Item Delete";
+        return String.format("%d. %s", key, name);
     }
 }

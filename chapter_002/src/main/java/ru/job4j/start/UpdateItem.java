@@ -10,9 +10,17 @@ import ru.job4j.models.*;
  */
 
 public class UpdateItem implements UserAction {
+    private int key;
+    private String name;
+
+    public UpdateItem(int key, String name) {
+        this.key = key;
+        this.name = name;
+    }
+
     @Override
     public int key() {
-        return 2;
+        return key;
     }
 
     @Override
@@ -31,6 +39,6 @@ public class UpdateItem implements UserAction {
 
     @Override
     public String info() {
-        return "Item is edited";
+        return String.format("%d. %s", key, name);
     }
 }
