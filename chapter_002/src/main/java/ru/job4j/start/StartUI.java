@@ -2,6 +2,9 @@ package ru.job4j.start;
 
 import ru.job4j.models.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Класс StartUI - точка входа в программу
  * @author Ilya Osipov (mailto:bullet3425@yandex.ru)
@@ -69,26 +72,16 @@ public class StartUI {
      * Основной цикл программы.
      */
     public void init() {
-        boolean exit = false;
-        while (!exit) {
-            this.showMenu();
-            String answer = this.input.ask("Введите пункт меню : ");
-            if (ADD.equals(answer)) {
-                this.createItem();
-            } else if (SHOW.equals(answer)) {
-                this.findAllItem();
-            } else if (EDIT.equals(answer)) {
-                this.replaceItem();
-            } else if (DELETE.equals(answer)) {
-                this.deleteItem();
-            } else if (FINDID.equals(answer)) {
-                this.findIdItem();
-            } else if (FINDNAME.equals(answer)) {
-                this.findNameItem();
-            } else if (EXIT.equals(answer)) {
-                exit = true;
-            }
+        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        List<Integer> range = new ArrayList<>();
+        menu.fillActions();
+        for (int i = 0; i < menu.getActionsLength(); i++) {
+            range.add(i);
         }
+        do {
+            menu.show();
+            menu.select(input.ask("select:", range));
+        } while (!"y".equals(this.input.ask("Exit?(y): ")));
     }
 
     /**
