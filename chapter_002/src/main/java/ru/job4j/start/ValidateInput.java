@@ -16,6 +16,7 @@ public class ValidateInput extends ConsoleInput {
         do {
             try {
                 value = super.ask(question, range);
+                invalide  = false;
             } catch (MenuOutException moe) {
                 System.out.println("Please select key from menu.");
             } catch (NumberFormatException nfe) {
