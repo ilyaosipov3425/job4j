@@ -80,7 +80,7 @@ public class StartUI {
         }
         do {
             menu.show();
-            menu.select(Integer.valueOf(input.ask("select:")));
+            menu.select(input.ask("select:", range));
         } while (!"y".equals(this.input.ask("Exit?(y/n): ")));
     }
 
@@ -183,6 +183,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 }
