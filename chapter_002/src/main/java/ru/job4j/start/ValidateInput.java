@@ -1,5 +1,7 @@
 package ru.job4j.start;
 
+import java.util.List;
+
 /**
  * Класс ValidateInput - переопределяет метод ask, что бы обрабатывались исключительные ситуации
  * @author Ilya Osipov (mailto:bullet3425@yandex.ru)
@@ -8,7 +10,7 @@ package ru.job4j.start;
  */
 
 public class ValidateInput extends ConsoleInput {
-    public int ask(String question, int[] range) {
+    public int ask(String question, List<Integer> range) {
         boolean invalide = true;
         int value = -1;
         do {

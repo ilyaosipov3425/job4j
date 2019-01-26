@@ -1,5 +1,7 @@
 package ru.job4j.start;
 
+import java.util.List;
+
 /**
  * Класс StubInput - эмуляция поведения пользователя.
  * @author Ilya OSipov (mailto:bullet3425@yandex.ru)
@@ -42,8 +44,8 @@ public class StubInput implements Input {
     }
 
     @Override
-    public int ask(String question, int[] range) {
-        throw new UnsupportedOperationException("Unsupported operation");
-        //return -1;
+    public int ask(String question, List<Integer> range) {
+        //throw new UnsupportedOperationException("Unsupported operation");
+        return -1;
     }
 }
