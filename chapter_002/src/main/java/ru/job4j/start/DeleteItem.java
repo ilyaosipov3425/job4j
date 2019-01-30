@@ -7,18 +7,10 @@ package ru.job4j.start;
  * @version $Id$
  */
 
-public class DeleteItem implements UserAction {
-    private int key;
-    private String name;
+public class DeleteItem extends BaseAction {
 
     public DeleteItem(int key, String name) {
-        this.key = key;
-        this.name = name;
-    }
-
-    @Override
-    public int key() {
-        return key;
+        super(key, name);
     }
 
     @Override
@@ -30,10 +22,5 @@ public class DeleteItem implements UserAction {
         } else {
             System.out.println("------------ Item not found ------------");
         }
-    }
-
-    @Override
-    public String info() {
-        return String.format("%d. %s", key, name);
     }
 }

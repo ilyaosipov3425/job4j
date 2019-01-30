@@ -9,18 +9,10 @@ import ru.job4j.models.*;
  * @version $Id$
  */
 
-public class FindAllItems implements UserAction {
-    private int key;
-    private String name;
+public class FindAllItems extends BaseAction {
 
     public FindAllItems(int key, String name) {
-        this.key = key;
-        this.name = name;
-    }
-
-    @Override
-    public int key() {
-        return key;
+        super(key, name);
     }
 
     @Override
@@ -31,10 +23,5 @@ public class FindAllItems implements UserAction {
             System.out.println(item);
         }
         System.out.println("------------ End of list ------------");
-    }
-
-    @Override
-    public String info() {
-        return String.format("%d. %s", key, name);
     }
 }

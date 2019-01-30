@@ -9,18 +9,10 @@ import ru.job4j.models.*;
  * @version $Id$
  */
 
-public class FindByNameItem implements UserAction {
-    private int key;
-    private String name;
+public class FindByNameItem extends BaseAction {
 
     public FindByNameItem(int key, String name) {
-        this.key = key;
-        this.name = name;
-    }
-
-    @Override
-    public int key() {
-        return key;
+        super(key, name);
     }
 
     @Override
@@ -35,10 +27,5 @@ public class FindByNameItem implements UserAction {
         } else {
             System.out.println("------------ Item not found ------------");
         }
-    }
-
-    @Override
-    public String info() {
-        return String.format("%d. %s", key, name);
     }
 }

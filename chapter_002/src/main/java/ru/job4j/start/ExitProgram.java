@@ -7,28 +7,15 @@ package ru.job4j.start;
  * @version $Id$
  */
 
-public class ExitProgram implements UserAction {
-    private int key;
-    private String name;
+public class ExitProgram extends BaseAction {
 
     public ExitProgram(int key, String name) {
-        this.key = key;
-        this.name = name;
-    }
-
-    @Override
-    public int key() {
-        return key;
+        super(key, name);
     }
 
     @Override
     public void execute(Input input, Tracker tracker) {
         System.out.println("------------ Exit Program ------------");
         System.exit(0);
-    }
-
-    @Override
-    public String info() {
-        return String.format("%d. %s", key, name);
     }
 }
