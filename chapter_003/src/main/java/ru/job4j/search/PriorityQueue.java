@@ -26,6 +26,8 @@ public class PriorityQueue {
                     break;
                 }
             }
+        } else {
+            tasks.add(0, task);
         }
     }
 
