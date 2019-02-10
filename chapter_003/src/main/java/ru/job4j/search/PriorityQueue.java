@@ -19,16 +19,15 @@ public class PriorityQueue {
      * @param task - задача
      */
     public void put(Task task) {
-        if (!tasks.isEmpty()) {
-            for (int index = 0; index <= tasks.size(); index++) {
-                if (tasks.get(index).getPriority() >= task.getPriority()) {
-                    tasks.add(index, task);
-                    break;
-                }
+        int i = 0;
+        for (int index = 0; index < tasks.size(); index++) {
+            if (tasks.get(index).getPriority() > task.getPriority()) {
+                i = index;
+                break;
             }
-        } else {
-            tasks.add(0, task);
+            i++;
         }
+        tasks.add(i, task);
     }
 
     public Task take() {
