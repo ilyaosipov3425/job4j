@@ -2,6 +2,8 @@ package ru.job4j.start;
 
 import ru.job4j.models.*;
 
+import java.util.List;
+
 /**
  * Класс FindAllItems - публикация всех заявок
  * @author Ilya Osipov (mailto:bullet3425@yandex.ru)
@@ -18,7 +20,7 @@ public class FindAllItems extends BaseAction {
     @Override
     public void execute(Input input, Tracker tracker) {
         System.out.println("------------ Show all items ------------");
-        Item[] findAllItem = tracker.findAll();
+        List<Item> findAllItem = tracker.findAll();
         for (Item item : findAllItem) {
             System.out.println(item);
         }

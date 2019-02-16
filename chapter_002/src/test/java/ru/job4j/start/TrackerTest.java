@@ -3,8 +3,11 @@ package ru.job4j.start;
 import org.junit.Test;
 import ru.job4j.models.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -19,19 +22,19 @@ public class TrackerTest {
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
         Tracker tracker = new Tracker();
+        List<Item> result = new ArrayList<>();
         Item item = new Item("test1", "testDescription", 123L);
         tracker.add(item);
-        assertThat(tracker.findAll()[0], is(item));
+        result.add(item);
+        assertThat(tracker.findAll(), is(result));
     }
 
     @Test
     public void whenReplaceNameThenReturnNewName() {
         Tracker tracker = new Tracker();
-        Item previous = new Item("test1", "testDescription", 123L);
-        // Добавляем заявку в трекер. Теперь в объекте проинициальзирован id.
-        tracker.add(previous);
+        Item previous = tracker.add(new Item("test1", "testDescription", 123L));
         // Создаем новую заявку.
-        Item next = new Item("test2", "testDescription", 1234L);
+        Item next = tracker.add(new Item("test2", "testDescription", 1234L));
         // Простовляем старый id из previous, которы был сгенерирован выше.
         next.setId(previous.getId());
         tracker.replace(previous.getId(), next);
@@ -44,12 +47,12 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         tracker.add(new Item("test2", "test2", 123L));
         tracker.add(new Item("test3", "test3", 123L));
-        Item[] ex = {
+        List<Item> ex = Arrays.asList(
                 tracker.add(new Item("test1", "testDescription", 123L)),
                 tracker.add(new Item("test1", "test2", 123L)),
-                tracker.add(new Item("test1", "test3", 123L)),
-        };
-        final Item[] result = tracker.findByName("test1");
+                tracker.add(new Item("test1", "test3", 123L))
+        );
+        final List<Item> result = tracker.findByName("test1");
         assertThat(result, is(ex));
     }
 

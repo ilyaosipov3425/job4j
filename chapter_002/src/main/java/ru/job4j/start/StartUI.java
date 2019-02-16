@@ -101,7 +101,7 @@ public class StartUI {
      */
     private void findAllItem() {
         System.out.println("------------ Список всех заявок ------------");
-        Item[] findAll = tracker.findAll();
+        List<Item> findAll = tracker.findAll();
         for (Item item : findAll) {
             System.out.println(item);
         }
@@ -157,8 +157,8 @@ public class StartUI {
     private void findNameItem() {
         System.out.println("------------ Поиск по имени заявки ------------");
         String name = this.input.ask("Введите имя заявки, которую требуется найти : ");
-        Item[] items = tracker.findByName(name);
-        if (items.length != 0) {
+        List<Item> items = tracker.findByName(name);
+        if (items.size() != 0) {
             for (Item findByName : items) {
                 System.out.println("------------ Найденая заявка : " + findByName + "------------");
             }

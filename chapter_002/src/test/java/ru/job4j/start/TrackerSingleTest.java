@@ -3,6 +3,8 @@ package ru.job4j.start;
 import org.junit.Test;
 import ru.job4j.models.Item;
 
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -20,8 +22,8 @@ public class TrackerSingleTest {
         Tracker tracker = TrackerSingleOne.INSTANCE.getTracker();
         Tracker tracker1 = TrackerSingleOne.INSTANCE.getTracker();
         tracker.add(new Item("test", "testDesc"));
-        Item[] items = tracker1.findByName("test");
-        assertThat("test", is(items[0].getName()));
+        List<Item> items = tracker1.findByName("test");
+        assertThat("test", is(items.get(0).getName()));
     }
 
     @Test
@@ -29,8 +31,8 @@ public class TrackerSingleTest {
         Tracker tracker = TrackerSingleTwo.getInstance();
         Tracker tracker1 = TrackerSingleTwo.getInstance();
         tracker.add(new Item("test", "testDesc"));
-        Item[] items = tracker1.findByName("test");
-        assertThat("test", is(items[0].getName()));
+        List<Item> items = tracker1.findByName("test");
+        assertThat("test", is(items.get(0).getName()));
     }
 
     @Test
@@ -38,8 +40,8 @@ public class TrackerSingleTest {
         Tracker tracker = TrackerSingleThree.getInstance();
         Tracker tracker1 = TrackerSingleThree.getInstance();
         tracker.add(new Item("test", "testDesc"));
-        Item[] items = tracker1.findByName("test");
-        assertThat("test", is(items[0].getName()));
+        List<Item> items = tracker1.findByName("test");
+        assertThat("test", is(items.get(0).getName()));
     }
 
     @Test
@@ -47,7 +49,7 @@ public class TrackerSingleTest {
         Tracker tracker = TrackerSingleFour.getInstance();
         Tracker tracker1 = TrackerSingleFour.getInstance();
         tracker.add(new Item("test", "testDesc"));
-        Item[] items = tracker1.findByName("test");
-        assertThat("test", is(items[0].getName()));
+        List<Item> items = tracker1.findByName("test");
+        assertThat("test", is(items.get(0).getName()));
     }
 }
