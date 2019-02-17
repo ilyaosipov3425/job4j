@@ -52,6 +52,7 @@ public class Tracker {
         boolean result = false;
         for (int i = 0; i < items.size(); i++) {
             if (findById(id).equals(items.get(i))) {
+                item.setId(id);
                 items.set(i, item);
                 result = true;
                 break;

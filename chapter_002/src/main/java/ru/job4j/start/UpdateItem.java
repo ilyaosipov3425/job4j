@@ -21,7 +21,6 @@ public class UpdateItem extends BaseAction {
         String id = input.ask("Please, provide id item which to edit : ");
         String name = input.ask("Please, provide item new name : ");
         String desc = input.ask("Please, provide item new description : ");
-        Item replace = tracker.findById(id);
         if (tracker.replace(id, new Item(name, desc))) {
             System.out.println("------------ Item is edited ------------");
         } else {
