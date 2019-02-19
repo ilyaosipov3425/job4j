@@ -1,8 +1,6 @@
 package ru.job4j.sort;
 
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Класс SortUser - сортирует user по возрасту в порядке возрастания
@@ -17,5 +15,30 @@ public class SortUser {
         Set<User> userSort = new TreeSet<>();
         userSort.addAll(users);
         return userSort;
+    }
+
+    public List<User> sortNameLength(List<User> list) {
+        list.sort(
+                new Comparator<User>() {
+                    @Override
+                    public int compare(User o1, User o2) {
+                        return o1.getName().length() > o2.getName().length() ? 1 : -1;
+                    }
+                }
+        );
+        return list;
+    }
+
+    public List<User> sortByAllFields(List<User> list) {
+        list.sort(
+                new Comparator<User>() {
+                    @Override
+                    public int compare(User o1, User o2) {
+                        int i = o1.getName().compareTo(o2.getName());
+                        return i != 0 ? i : Integer.compare(o1.getAge(), o2.getAge());
+                    }
+                }
+        );
+        return list;
     }
 }

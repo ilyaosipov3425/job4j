@@ -44,4 +44,34 @@ public class SortUserTest {
         Set<User> result = sortUser.sort(users);
         assertThat(result.iterator().next().getName(), is("Ilya"));
     }
+
+    @Test
+    public void whenUsersSortNameLength() {
+        SortUser sortUser = new SortUser();
+        List<User> users = Arrays.asList(
+                new User("Сергей", 25),
+                new User("Иван", 30),
+                new User("Сергей", 20),
+                new User("Иван", 25),
+                new User("Алексей", 40),
+                new User("Алексей", 15)
+        );
+        List<User> result = sortUser.sortNameLength(users);
+        assertThat(result.iterator().next().getName(), is("Иван"));
+    }
+
+    @Test
+    public void whenUsersSortByAllFields() {
+        SortUser sortUser = new SortUser();
+        List<User> users = Arrays.asList(
+                new User("Сергей", 25),
+                new User("Иван", 30),
+                new User("Сергей", 20),
+                new User("Иван", 25),
+                new User("Алексей", 40),
+                new User("Алексей", 15)
+        );
+        List<User> result = sortUser.sortByAllFields(users);
+        assertThat(result.iterator().next().getName(), is("Алексей"));
+    }
 }
