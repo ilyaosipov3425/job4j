@@ -15,11 +15,16 @@ public class ListCompare implements Comparator<String> {
         int result = 0;
         int first = left.length();
         int second = right.length();
-        int rst = Integer.compare(first, second);
-        for (int i = 0; i < rst; i++) {
+        int min = Math.min(first, second);
+        for (int i = 0; i < min; i++) {
             char firstChar = left.charAt(i);
             char secondChar = right.charAt(i);
-            result = Character.compare(firstChar, secondChar);
+            if (firstChar != secondChar) {
+                result = Character.compare(firstChar, secondChar);
+            }
+        }
+        if (result == 0) {
+            result = Integer.compare(first, second);
         }
         return result;
     }
