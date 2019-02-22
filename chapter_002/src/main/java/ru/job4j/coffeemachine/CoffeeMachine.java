@@ -13,6 +13,7 @@ public class CoffeeMachine {
     public static void main(String[] args) {
         CoffeeMachine machine = new CoffeeMachine();
         machine.changes(50, 35);
+        machine.changes(100, 35);
     }
     /**
      * @param value - купюра
@@ -20,26 +21,23 @@ public class CoffeeMachine {
      * @return - массив сдачи
      */
     int[] changes(int value, int price) {
-        int[] result = new int[10];
-        int position = 0;
+        int[] result = new int[0];
         int remained = value - price;
-        for (int i = 0; i < result.length; i++) {
-            if (remained != 0) {
-                int first = coins[i];
-                int number = remained / first;
-                while (result.length != 0) {
-                    int j = number;
-                    while (j != 0) {
-                        result[position++] = first;
-                        j--;
-                    }
+        int position = 0;
+        int i = 0;
+        while (remained != 0) {
+            i++;
+            for (int c : coins) {
+                if (c <= remained) {
+                    position = c;
                     break;
                 }
-                if (remained % first == 0) {
-                    break;
-                }
-                remained = remained - (first * number);
             }
+            remained = remained - position;
+            int[] rst = result;
+            result = new int[i];
+            System.arraycopy(rst, 0, result, 0, rst.length);
+            result[i - 1] = position;
         }
         return result;
     }
