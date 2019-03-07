@@ -3,8 +3,6 @@ package ru.job4j.chess;
 import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
 
-import java.util.Optional;
-
 /**
  * //TODO add comments.
  *
@@ -23,20 +21,18 @@ public class Logic {
     public boolean move(Cell source, Cell dest) throws FigureNotFoundException, ImpossibleMoveException, OccupiedWayException {
         boolean rst = false;
         int index = this.findBy(source);
-        if (index != -1) {
-            try {
-                Cell[] steps = this.figures[index].way(source, dest);
-                if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
-                    rst = true;
-                }
-                this.figures[index] = this.figures[index].copy(dest);
-            } catch (FigureNotFoundException fnf) {
-                System.out.println("Figure not found");
-            } catch (ImpossibleMoveException ime) {
-                System.out.println("Impossible move");
-            } catch (OccupiedWayException owe) {
-                System.out.println("Occupied way");
+        if (index == -1) {
+            throw new FigureNotFoundException("Figure not found!");
+        }
+        Cell[] steps = figures[index].way(source, dest);
+        for (int i = 0; i < steps.length; i++) {
+            if (this.findBy(steps[i]) != -1) {
+                throw new OccupiedWayException("Occupied way!");
             }
+        }
+        if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
+            rst = true;
+            this.figures[index] = this.figures[index].copy(dest);
         }
         return rst;
     }
@@ -50,7 +46,7 @@ public class Logic {
 
     private int findBy(Cell cell) {
         int rst = -1;
-        for (int index = 0; index != this.figures.length; index++) {
+        for (int index = 0; index < this.figures.length; index++) {
             if (this.figures[index] != null && this.figures[index].position().equals(cell)) {
                 rst = index;
                 break;

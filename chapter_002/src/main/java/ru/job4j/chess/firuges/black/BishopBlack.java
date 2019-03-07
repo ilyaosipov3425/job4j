@@ -24,25 +24,25 @@ public class BishopBlack implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
-        if (!isDiagonal(source, dest)) {
-            throw new ImpossibleMoveException("Impossible move");
-        }
-        int size = Math.abs(dest.x - source.x);
+        int size = Math.abs(source.y - dest.y);
         Cell[] steps = new Cell[size];
         int deltaX = (dest.x - source.x) < 0 ? -1 : 1;
         int deltaY = (dest.y - source.y) < 0 ? -1 : 1;
-        for (int i = 0; i < size; i++) {
-            steps[i] = Cell.values()[(source.x - deltaX * (i + 1)) * 8 + (source.y - deltaY * (i + 1))];
+        if (this.isDiagonale(source, dest)) {
+            throw new ImpossibleMoveException("The Bishop moves diagonally");
+        }
+        for (int i = 0; i < steps.length; i++) {
+            steps[i] = Cell.values()[(source.x + deltaX * (i + 1)) * 8 + (source.y + deltaY * (i + 1))];
         }
         return steps;
     }
 
-    private boolean isDiagonal(Cell source, Cell dest) {
-        boolean result = false;
-        if (Math.abs(dest.y - source.y) == Math.abs(dest.x - source.x)) {
-            result = true;
+    private boolean isDiagonale(Cell source, Cell dest) {
+        boolean rst = false;
+        if (Math.abs(source.x - dest.x) != Math.abs(source.y - dest.y)) {
+            rst = true;
         }
-        return result;
+        return rst;
     }
 
     @Override
