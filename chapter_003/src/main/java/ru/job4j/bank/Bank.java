@@ -16,7 +16,7 @@ public class Bank {
      * Добавления пользователя
      */
     public void addUser(User user) {
-        this.userListMap.put(user, new ArrayList<>());
+        this.userListMap.putIfAbsent(user, new ArrayList<>());
     }
     /**
      * Удаление пользователя
