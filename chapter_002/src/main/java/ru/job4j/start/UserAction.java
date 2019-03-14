@@ -1,5 +1,7 @@
 package ru.job4j.start;
 
+import java.util.function.Consumer;
+
 /**
  * Класс UserAction - интерфейс
  * @author Ilya Osipov (mailto:bullet3425@yandex.ru)
@@ -19,7 +21,7 @@ public interface UserAction {
      * @param input объект типа Input
      * @param tracker объект типа Tracker
      */
-    void execute(Input input, Tracker tracker);
+    void execute(Input input, Tracker tracker, Consumer<String> output);
 
     /**
      * Метод возвращаяет информацию о данном пункте меню.

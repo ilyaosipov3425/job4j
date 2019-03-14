@@ -3,6 +3,7 @@ package ru.job4j.start;
 import ru.job4j.models.*;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Класс FindByNameItem - поиск заявки по имени
@@ -18,16 +19,16 @@ public class FindByNameItem extends BaseAction {
     }
 
     @Override
-    public void execute(Input input, Tracker tracker) {
-        System.out.println("------------ Search item on name ------------");
+    public void execute(Input input, Tracker tracker, Consumer<String> output) {
+        output.accept("------------ Search item on name ------------");
         String name = input.ask("Please, provide name item which to find : ");
         List<Item> items = tracker.findByName(name);
         if (items.size() != 0) {
             for (Item findByName : items) {
-                System.out.println("------------ Found item " + findByName);
+                output.accept("------------ Found item " + findByName);
             }
         } else {
-            System.out.println("------------ Item not found ------------");
+            output.accept("------------ Item not found ------------");
         }
     }
 }

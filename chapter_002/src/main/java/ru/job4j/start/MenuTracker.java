@@ -2,6 +2,7 @@ package ru.job4j.start;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Класс MenuTracker - реализовывает меню
@@ -24,14 +25,19 @@ public class MenuTracker {
      */
     private List<UserAction> action = new ArrayList<>();
     /**
+     * Функциональный интерфейс Consumer
+     */
+    private final Consumer<String> output;
+    /**
      * Конструктор.
-     *
+     * @param output
      * @param input объект типа Input
      * @param tracker объект типа Tracker
      */
-    public MenuTracker(Input input, Tracker tracker) {
+    public MenuTracker(Input input, Tracker tracker, Consumer<String> output) {
         this.input = input;
         this.tracker = tracker;
+        this.output = output;
     }
     /**
      * Метод для получения массива меню.
@@ -60,7 +66,7 @@ public class MenuTracker {
      * @param key ключ операции
      */
     public void select(int key) {
-        this.action.get(key).execute(this.input, this.tracker);
+        this.action.get(key).execute(this.input, this.tracker, this.output);
     }
     /**
      * Метод вывода на экран.
@@ -68,7 +74,7 @@ public class MenuTracker {
     public void show() {
         for (UserAction action : this.action) {
             if (action != null) {
-                System.out.println(action.info());
+                output.accept(action.info());
             }
         }
     }

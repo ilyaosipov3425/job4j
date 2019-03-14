@@ -2,6 +2,8 @@ package ru.job4j.start;
 
 import ru.job4j.models.*;
 
+import java.util.function.Consumer;
+
 /**
  * Класс UpdateItem - редактирование заявки
  * @author Ilya Osipov (mailto:bullet3425@yandex.ru)
@@ -16,15 +18,15 @@ public class UpdateItem extends BaseAction {
     }
 
     @Override
-    public void execute(Input input, Tracker tracker) {
-        System.out.println("------------ Edit the Item ------------");
+    public void execute(Input input, Tracker tracker, Consumer<String> output) {
+        output.accept("------------ Edit the Item ------------");
         String id = input.ask("Please, provide id item which to edit : ");
         String name = input.ask("Please, provide item new name : ");
         String desc = input.ask("Please, provide item new description : ");
         if (tracker.replace(id, new Item(name, desc))) {
-            System.out.println("------------ Item is edited ------------");
+            output.accept("------------ Item is edited ------------");
         } else {
-            System.out.println("------------ Item not found ------------");
+            output.accept("------------ Item not found ------------");
         }
     }
 }

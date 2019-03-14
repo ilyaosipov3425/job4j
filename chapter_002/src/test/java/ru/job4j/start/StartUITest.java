@@ -7,6 +7,8 @@ import ru.job4j.models.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.StringJoiner;
+import java.util.function.Consumer;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -21,6 +23,19 @@ import static org.junit.Assert.assertThat;
 public class StartUITest {
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private final Consumer<String> output = new Consumer<String>() {
+
+        @Override
+        public void accept(String s) {
+            stdout.println(s);
+        }
+
+        @Override
+        public String toString() {
+            return new String(out.toByteArray());
+        }
+    };
+
     public String ln = System.lineSeparator();
     public StringBuilder menu = new StringBuilder()
             .append("0. Add item" + ln)
@@ -46,7 +61,7 @@ public class StartUITest {
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker(); // создаём Tracker
         Input input = new StubInput(new String[]{"0", "test name", "desc", "y"}); // создаём StubInput с последовательностью действий
-        new StartUI(input, tracker).init(); // создаём StartUI и вызываем метод init()
+        new StartUI(input, tracker, System.out::println).init(); // создаём StartUI и вызываем метод init()
         assertThat(tracker.findAll().get(0).getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции
     }
 
@@ -58,7 +73,7 @@ public class StartUITest {
         // создаем StubInput с последовательностью действий(производим замену заявки)
         Input input = new StubInput(new String[]{"2", item.getId(), "test replace", "заменили заявку", "y"});
         // создаем StartUI и вызываем метод init()
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, System.out::println).init();
         // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции
         assertThat(tracker.findById(item.getId()).getName(), is("test replace"));
     }
@@ -68,7 +83,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc"));
         Input input = new StubInput(new String[]{"3", item.getId(), "y"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, System.out::println).init();
         assertThat(tracker.findAll().size(), is(0));
     }
 
@@ -77,7 +92,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc"));
         Input input = new StubInput(new String[]{"4", item.getId(), "y"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, System.out::println).init();
         assertThat(
                 new String(out.toByteArray()), is(new StringBuilder()
                 .append(menu)
@@ -93,7 +108,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc"));
         Input input = new StubInput(new String[]{"5", "test name", "y"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, System.out::println).init();
         assertThat(
                 new String(out.toByteArray()), is(new StringBuilder()
                 .append(menu)
@@ -109,7 +124,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc"));
         Input input = new StubInput(new String[]{"1", "y"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, System.out::println).init();
         assertThat(
                 new String(out.toByteArray()), is(new StringBuilder()
                 .append(menu)

@@ -1,5 +1,7 @@
 package ru.job4j.start;
 
+import java.util.function.Consumer;
+
 /**
  * Класс ExitProgram - выход из программы
  * @author Iya Osipov (mailto:bullet3425@yandex.ru)
@@ -14,8 +16,8 @@ public class ExitProgram extends BaseAction {
     }
 
     @Override
-    public void execute(Input input, Tracker tracker) {
-        System.out.println("------------ Exit Program ------------");
+    public void execute(Input input, Tracker tracker, Consumer<String> output) {
+        output.accept("------------ Exit Program ------------");
         System.exit(0);
     }
 }

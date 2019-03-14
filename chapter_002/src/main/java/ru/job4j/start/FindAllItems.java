@@ -3,6 +3,7 @@ package ru.job4j.start;
 import ru.job4j.models.*;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Класс FindAllItems - публикация всех заявок
@@ -18,12 +19,12 @@ public class FindAllItems extends BaseAction {
     }
 
     @Override
-    public void execute(Input input, Tracker tracker) {
-        System.out.println("------------ Show all items ------------");
+    public void execute(Input input, Tracker tracker, Consumer<String> output) {
+        output.accept("------------ Show all items ------------");
         List<Item> findAllItem = tracker.findAll();
         for (Item item : findAllItem) {
             System.out.println(item);
         }
-        System.out.println("------------ End of list ------------");
+        output.accept("------------ End of list ------------");
     }
 }
