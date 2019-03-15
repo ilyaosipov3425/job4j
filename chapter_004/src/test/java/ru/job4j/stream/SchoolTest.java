@@ -62,8 +62,8 @@ public class SchoolTest {
         list.add(new Student(90));
         List<Student> result = school.collect(list, student -> student.getScore() < 50);
         List<Student> expected = new ArrayList<>();
-        expected.add(new Student(30));
         expected.add(new Student(10));
+        expected.add(new Student(30));
         assertThat(result, is(expected));
     }
 }
