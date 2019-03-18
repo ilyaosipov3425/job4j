@@ -1,8 +1,5 @@
 package ru.job4j.stream;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 /**
  * Класс Profile - профиль пользователя
  * @author Ilya Osipov (mailto:bullet3425@yandex.ru)

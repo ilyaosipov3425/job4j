@@ -13,12 +13,18 @@ import java.util.stream.Collectors;
  */
 
 public class School {
+    /**
+     * Метод делит учеников на группы по баллу
+     */
     List<Student> collect(List<Student> students, Predicate<Student> predict) {
          return students.stream()
                 .filter(predict)
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Метод преобразует List в Map
+     */
     Map<String, Student> collectMap(List<Student> students) {
         return students.stream()
                 .distinct()
