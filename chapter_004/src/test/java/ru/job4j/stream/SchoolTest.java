@@ -2,8 +2,10 @@ package ru.job4j.stream;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -16,54 +18,59 @@ import static org.hamcrest.core.Is.is;
  */
 
 public class SchoolTest {
+    private List<Student> list = Arrays.asList(
+            new Student(70, "TestName1"),
+            new Student(50, "TestName2"),
+            new Student(10, "TestName3"),
+            new Student(60, "TestName4"),
+            new Student(30, "TestName5"),
+            new Student(90, "TestName6")
+    );
+
     @Test
     public void whenTheListOfStudentsOfClassA() {
         School school = new School();
-        List<Student> list = new ArrayList<>();
-        list.add(new Student(70));
-        list.add(new Student(50));
-        list.add(new Student(10));
-        list.add(new Student(60));
-        list.add(new Student(30));
-        list.add(new Student(90));
         List<Student> result = school.collect(list, student -> student.getScore() >= 70);
-        List<Student> expected = new ArrayList<>();
-        expected.add(new Student(70));
-        expected.add(new Student(90));
+        List<Student> expected = Arrays.asList(
+                new Student(70, "TestName1"),
+                new Student(90, "TestName6")
+        );
         assertThat(result, is(expected));
     }
 
     @Test
     public void whenTheListOfStudentsOfClassB() {
         School school = new School();
-        List<Student> list = new ArrayList<>();
-        list.add(new Student(70));
-        list.add(new Student(50));
-        list.add(new Student(10));
-        list.add(new Student(60));
-        list.add(new Student(30));
-        list.add(new Student(90));
         List<Student> result = school.collect(list, student -> student.getScore() < 70 && student.getScore() >= 50);
-        List<Student> expected = new ArrayList<>();
-        expected.add(new Student(50));
-        expected.add(new Student(60));
+        List<Student> expected = Arrays.asList(
+                new Student(50, "TestName2"),
+                new Student(60, "TestName4")
+        );
         assertThat(result, is(expected));
     }
 
     @Test
     public void whenTheListOfStudentsOfClassC() {
         School school = new School();
-        List<Student> list = new ArrayList<>();
-        list.add(new Student(70));
-        list.add(new Student(50));
-        list.add(new Student(10));
-        list.add(new Student(60));
-        list.add(new Student(30));
-        list.add(new Student(90));
         List<Student> result = school.collect(list, student -> student.getScore() < 50);
-        List<Student> expected = new ArrayList<>();
-        expected.add(new Student(10));
-        expected.add(new Student(30));
+        List<Student> expected = Arrays.asList(
+                new Student(10, "TestName"),
+                new Student(30, "TestName")
+        );
+        assertThat(result, is(expected));
+    }
+
+    @Test
+    public void whenTheMapOfStudents() {
+        School school = new School();
+        Map<String, Student> result = school.collectMap(list);
+        Map<String, Student> expected = new HashMap<>();
+        expected.put(list.get(0).getName(), list.get(0));
+        expected.put(list.get(1).getName(), list.get(1));
+        expected.put(list.get(2).getName(), list.get(2));
+        expected.put(list.get(3).getName(), list.get(3));
+        expected.put(list.get(4).getName(), list.get(4));
+        expected.put(list.get(5).getName(), list.get(5));
         assertThat(result, is(expected));
     }
 }
