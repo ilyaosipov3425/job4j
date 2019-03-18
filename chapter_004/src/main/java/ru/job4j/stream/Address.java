@@ -64,7 +64,7 @@ public class Address {
                 + "city = " + city
                 + ", street = " + street
                 + ", home = " + home
-                + ", apartment" + apartment
+                + ", apartment = " + apartment
                 + '}';
     }
 }
