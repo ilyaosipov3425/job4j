@@ -16,42 +16,34 @@ import static org.hamcrest.core.Is.is;
  */
 
 public class BankTest {
+    private Bank bank = new Bank();
 
     @Test
     public void whenAddUser() {
-        Bank bank = new Bank();
-        User user = new User("Ivan", "1234567");
-        bank.addUser(user);
+        bank.addUser(new User("Ivan", "1234567"));
         User result = bank.getUser("1234567");
         assertThat(result.getName(), is("Ivan"));
     }
 
     @Test
     public void whenDeleteUser() {
-        Bank bank = new Bank();
-        User user = new User("Ivan", "1234567");
-        bank.addUser(user);
-        bank.deleteUser(user);
+        bank.addUser(new User("Ivan", "1234567"));
+        bank.deleteUser(new User("Ivan", "1234567"));
         assertNull(bank.getUser("1234567"));
     }
 
     @Test
     public void whenAddAccountToUser() {
-        Bank bank = new Bank();
-        User user = new User("Ivan", "1234567");
-        Account account = new Account(7654321D, "RequisitesTest");
-        bank.addUser(user);
-        bank.addAccountToUser("1234567", account);
+        bank.addUser(new User("Ivan", "1234567"));
+        bank.addAccountToUser("1234567", new Account(7654321D, "RequisitesTest"));
         List<Account> result = bank.getUserAccounts("1234567");
         assertThat(result.get(0).getRequisites(), is("RequisitesTest"));
     }
 
     @Test
     public void whenDeleteAccountToUser() {
-        Bank bank = new Bank();
-        User user = new User("Ivan", "1234567");
         Account account = new Account(7654321D, "RequisitesTest");
-        bank.addUser(user);
+        bank.addUser(new User("Ivan", "1234567"));
         bank.addAccountToUser("1234567", account);
         bank.deleteAccountToUser("1234567", account);
         List<Account> result = bank.getUserAccounts("1234567");
@@ -60,15 +52,10 @@ public class BankTest {
 
     @Test
     public void whenTransferMoneyOneUserToAnotherUser() {
-        Bank bank = new Bank();
-        User srcUser = new User("Ivan", "1234567");
-        User destUser = new User("Ilya", "2345678");
-        Account srcAccount = new Account(7654321D, "srcRequisitesTest");
-        Account destAccount = new Account(8765432D, "destRequisitesTest");
-        bank.addUser(srcUser);
-        bank.addUser(destUser);
-        bank.addAccountToUser("1234567", srcAccount);
-        bank.addAccountToUser("2345678", destAccount);
+        bank.addUser(new User("Ivan", "1234567"));
+        bank.addUser(new User("Ilya", "2345678"));
+        bank.addAccountToUser("1234567", new Account(7654321D, "srcRequisitesTest"));
+        bank.addAccountToUser("2345678", new Account(8765432D, "destRequisitesTest"));
         bank.transferMoney("1234567", "srcRequisitesTest", "2345678", "destRequisitesTest", 10000D);
         List<Account> resultSrc = bank.getUserAccounts("1234567");
         List<Account> resultDest = bank.getUserAccounts("2345678");

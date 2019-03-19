@@ -50,14 +50,13 @@ public class Bank {
         }
     }
     /**
-     * Получение списока счётов для пользователя
+     * Получение списка счётов для пользователя
      */
     public List<Account> getUserAccounts(String passport) {
         List<Account> accounts = new ArrayList<>();
         if (passport == null) {
             return new ArrayList<>();
         }
-        //List<Account> accounts = new ArrayList<>();
         for (User user : this.userListMap.keySet()) {
             if (user.getPassport().equals(passport)) {
                 accounts = this.userListMap.get(user);
