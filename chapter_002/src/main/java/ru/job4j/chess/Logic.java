@@ -4,11 +4,10 @@ import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
 
 /**
- * //TODO add comments.
- *
- * @author Petr Arsentev (parsentev@yandex.ru)
+ * Класс Logic
+ * @author Ilya Osipov (mailto:bullet3425@yandex.ru)
  * @version $Id$
- * @since 0.1
+ * @since 19.03.2019
  */
 public class Logic {
     private final Figure[] figures = new Figure[32];
