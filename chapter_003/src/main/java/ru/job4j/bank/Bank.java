@@ -1,6 +1,7 @@
 package ru.job4j.bank;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Класс Bank - содержит логику использования банковского счёта
@@ -53,17 +54,10 @@ public class Bank {
      * Получение списка счётов для пользователя
      */
     public List<Account> getUserAccounts(String passport) {
-        List<Account> accounts = new ArrayList<>();
-        if (passport == null) {
-            return new ArrayList<>();
-        }
-        for (User user : this.userListMap.keySet()) {
-            if (user.getPassport().equals(passport)) {
-                accounts = this.userListMap.get(user);
-                break;
-            }
-        }
-        return accounts;
+        return this.userListMap.entrySet().stream()
+                .filter(userListEntry -> userListEntry.getKey().getPassport().equals(passport))
+                .flatMap(userListEntry -> userListEntry.getValue().stream())
+                .collect(Collectors.toList());
     }
     /**
      * Метод для перечесения денег с одного счёта на другой счёт.
@@ -90,13 +84,9 @@ public class Bank {
      * @param passport - паспорт пользователя
      */
     public User getUser(String passport) {
-        User rst = null;
-        for (User user : this.userListMap.keySet()) {
-            if (user.getPassport().equals(passport)) {
-                rst = user;
-            }
-        }
-        return rst;
+        return this.userListMap.keySet().stream()
+                .filter(user -> user.getPassport().equals(passport))
+                .findFirst().orElse(null);
     }
     /**
      * Поиск учетной записи пользователя и реквезитов счёта
@@ -104,12 +94,8 @@ public class Bank {
      * @param requisite - реквезиты счёта
      */
     public Account getAccount(User user, String requisite) {
-        Account rst = null;
-        for (Account account : this.userListMap.get(user)) {
-            if (account.getRequisites().equals(requisite)) {
-                rst = account;
-            }
-        }
-        return rst;
+        return this.userListMap.values().stream().flatMap(Collection::stream)
+                .filter(account -> account.getRequisites().equals(requisite))
+                .collect(Collectors.toCollection(ArrayList::new)).iterator().next();
     }
 }
