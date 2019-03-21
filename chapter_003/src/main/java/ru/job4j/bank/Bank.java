@@ -29,26 +29,17 @@ public class Bank {
      * Добавление счёта пользователю
      */
     public void addAccountToUser(String passport, Account account) {
-        if (account != null || passport != null) {
-            for (User user : this.userListMap.keySet()) {
-                if (user.getPassport().equals(passport)) {
-                    this.userListMap.get(user).add(account);
-                }
-            }
-        }
+        this.userListMap.get(this.userListMap.keySet().stream()
+                .filter(user -> user.getPassport().equals(passport))
+                .findFirst().orElse(null)).add(account);
     }
     /**
      * Удаление одного счёта пользователя
      */
     public void deleteAccountToUser(String passport, Account account) {
-        if (account != null || passport != null) {
-            for (User user : this.userListMap.keySet()) {
-                if (user.getPassport().equals(passport)) {
-                    this.userListMap.get(user).remove(account);
-                    break;
-                }
-            }
-        }
+        this.userListMap.get(this.userListMap.keySet().stream()
+                .filter(user -> user.getPassport().equals(passport))
+                .findFirst().orElse(null)).remove(account);
     }
     /**
      * Получение списка счётов для пользователя
@@ -94,8 +85,9 @@ public class Bank {
      * @param requisite - реквезиты счёта
      */
     public Account getAccount(User user, String requisite) {
-        return this.userListMap.values().stream().flatMap(Collection::stream)
+        List<Account> list = this.userListMap.get(user);
+        return list.stream()
                 .filter(account -> account.getRequisites().equals(requisite))
-                .collect(Collectors.toCollection(ArrayList::new)).iterator().next();
+                .findFirst().orElse(null);
     }
 }
