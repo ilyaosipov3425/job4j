@@ -35,6 +35,9 @@ public class School {
                 ));
     }
 
+    /**
+     * Метод возвращает список студентов у которых балл больше bound
+     */
     List<Student> levelOf(List<Student> students, int bound) {
         return students.stream()
                 .sorted(Student::compareTo)
