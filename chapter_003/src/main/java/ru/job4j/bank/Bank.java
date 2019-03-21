@@ -86,8 +86,11 @@ public class Bank {
      */
     public Account getAccount(User user, String requisite) {
         List<Account> list = this.userListMap.get(user);
-        return list.stream()
-                .filter(account -> account.getRequisites().equals(requisite))
-                .findFirst().orElse(null);
+        if (list != null) {
+            return list.stream()
+                    .filter(account -> account.getRequisites().equals(requisite))
+                    .findFirst().orElse(null);
+        }
+        return null;
     }
 }
