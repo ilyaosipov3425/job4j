@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Класс School - делит учеников на группы
@@ -32,5 +33,13 @@ public class School {
                         student -> student.getName(),
                         student -> student
                 ));
+    }
+
+    List<Student> levelOf(List<Student> students, int bound) {
+        return students.stream()
+                .sorted(Student::compareTo)
+                .flatMap(Stream::ofNullable)
+                .takeWhile(student -> student.getScore() >= bound)
+                .collect(Collectors.toList());
     }
 }

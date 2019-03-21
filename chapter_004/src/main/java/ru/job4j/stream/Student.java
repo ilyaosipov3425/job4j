@@ -9,7 +9,7 @@ import java.util.Objects;
  * @version $Id$
  */
 
-public class Student {
+public class Student implements Comparable<Student> {
     private int score;
     private String name;
 
@@ -47,7 +47,12 @@ public class Student {
     public String toString() {
         return "Student{"
                 + "score = " + score
-                + "name = " + name
+                + ", name = " + name
                 + '}';
+    }
+
+    @Override
+    public int compareTo(Student s) {
+        return -1 * Integer.compare(getScore(), s.score);
     }
 }

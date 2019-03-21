@@ -18,6 +18,7 @@ import static org.hamcrest.core.Is.is;
  */
 
 public class SchoolTest {
+    private School school = new School();
     private List<Student> list = Arrays.asList(
             new Student(70, "TestName1"),
             new Student(50, "TestName2"),
@@ -29,7 +30,6 @@ public class SchoolTest {
 
     @Test
     public void whenTheListOfStudentsOfClassA() {
-        School school = new School();
         List<Student> result = school.collect(list, student -> student.getScore() >= 70);
         List<Student> expected = Arrays.asList(
                 new Student(70, "TestName1"),
@@ -40,7 +40,6 @@ public class SchoolTest {
 
     @Test
     public void whenTheListOfStudentsOfClassB() {
-        School school = new School();
         List<Student> result = school.collect(list, student -> student.getScore() < 70 && student.getScore() >= 50);
         List<Student> expected = Arrays.asList(
                 new Student(50, "TestName2"),
@@ -51,7 +50,6 @@ public class SchoolTest {
 
     @Test
     public void whenTheListOfStudentsOfClassC() {
-        School school = new School();
         List<Student> result = school.collect(list, student -> student.getScore() < 50);
         List<Student> expected = Arrays.asList(
                 new Student(10, "TestName"),
@@ -62,7 +60,6 @@ public class SchoolTest {
 
     @Test
     public void whenTheMapOfStudents() {
-        School school = new School();
         Map<String, Student> result = school.collectMap(list);
         Map<String, Student> expected = new HashMap<>();
         expected.put(list.get(0).getName(), list.get(0));
@@ -71,6 +68,16 @@ public class SchoolTest {
         expected.put(list.get(3).getName(), list.get(3));
         expected.put(list.get(4).getName(), list.get(4));
         expected.put(list.get(5).getName(), list.get(5));
+        assertThat(result, is(expected));
+    }
+
+    @Test
+    public void whenTheStudentsLevelOf() {
+        List<Student> result = school.levelOf(list, 70);
+        List<Student> expected = Arrays.asList(
+                new Student(90, "TestName6"),
+                new Student(70, "TestName1")
+        );
         assertThat(result, is(expected));
     }
 }
