@@ -17,6 +17,7 @@ import static org.junit.Assert.assertThat;
 
 public class ConvertMatrix2ListTest {
     private ConvertMatrix2List list = new ConvertMatrix2List();
+
     @Test
     public void when2on2ArrayThenList4() {
         int[][] input = {
