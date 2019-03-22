@@ -17,24 +17,21 @@ import static org.junit.Assert.assertThat;
  */
 
 public class UserConvertTest {
+    private UserConvert userConvert = new UserConvert();
+    private List<User> list = List.of(
+            new User(0, "TestName1", "TestCity1"),
+            new User(1, "TestName2", "TestCity2"),
+            new User(2, "TestName3", "TestCity3")
+    );
+
     @Test
     public void whenConvertListToMap() {
-        UserConvert userConvert = new UserConvert();
-        List<User> list = new ArrayList<>();
-        list.add(new User(0, "Ilya", "Pskov"));
-        list.add(new User(1, "Ivan", "Moscow"));
-        list.add(new User(2, "Petr", "Omsk"));
         HashMap<Integer, User> result = userConvert.process(list);
         assertThat(result.get(0), is(list.get(0)));
     }
 
     @Test
     public void when2ConvertListToMap() {
-        UserConvert userConvert = new UserConvert();
-        List<User> list = new ArrayList<>();
-        list.add(new User(0, "Ilya", "Pskov"));
-        list.add(new User(1, "Ivan", "Moscow"));
-        list.add(new User(2, "Petr", "Omsk"));
         HashMap<Integer, User> result = userConvert.process(list);
         assertThat(result.get(1), is(list.get(1)));
     }

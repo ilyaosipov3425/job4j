@@ -2,9 +2,7 @@ package ru.job4j.sort;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -17,10 +15,11 @@ import static org.junit.Assert.assertThat;
  */
 
 public class SortUserTest {
+    private SortUser sortUser = new SortUser();
+
     @Test
     public void whenSortUsersToAge() {
-        SortUser sortUser = new SortUser();
-        List<User> users = Arrays.asList(
+        List<User> users = List.of(
                 new User("Ilya", 26),
                 new User("Anna", 25),
                 new User("Ivan", 18),
@@ -33,8 +32,7 @@ public class SortUserTest {
 
     @Test
     public void whenSortUsersToAge2() {
-        SortUser sortUser = new SortUser();
-        List<User> users = Arrays.asList(
+        List<User> users = List.of(
                 new User("Ilya", 15),
                 new User("Anna", 25),
                 new User("Ivan", 18),
@@ -47,7 +45,6 @@ public class SortUserTest {
 
     @Test
     public void whenUsersSortNameLength() {
-        SortUser sortUser = new SortUser();
         List<User> users = Arrays.asList(
                 new User("Сергей", 25),
                 new User("Иван", 30),
@@ -62,7 +59,6 @@ public class SortUserTest {
 
     @Test
     public void whenUsersSortByAllFields() {
-        SortUser sortUser = new SortUser();
         List<User> users = Arrays.asList(
                 new User("Сергей", 25),
                 new User("Иван", 30),
